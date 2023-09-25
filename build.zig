@@ -34,6 +34,13 @@ pub fn build(b: *std.Build) void {
     //lib.addObjectFile("vendor/libcurl/lib/libcurl.a");//static
     //lib.linkSystemLibrary("python3.11");//dynamic
 
+    // and docs
+    //b.installDirectory(.{
+    //	.source_dir = lib.getEmittedDocs(),
+    //	.install_dir = .prefix,
+    //	.install_subdir = "doc",
+	//});
+
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).

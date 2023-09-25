@@ -5,21 +5,18 @@ A general-purpose programming language and toolchain for maintaining
 
 https://ziglang.org/
 
-## Documentation
+This is my soure development repo for testing ideas and building.
 
-If you are looking at this README file in a source tree, please refer to the
-**Release Notes**, **Language Reference**, or **Standard Library
-Documentation** corresponding to the version of Zig that you are using by
-following the appropriate link on the
-[download page](https://ziglang.org/download).
+## Projects in This Repository
 
-Otherwise, you're looking at a release of Zig, and you can find documentation
-here:
+ * A blank to be extended library `kring`
+ * Editing of default build scripts `build.zig`
 
- * doc/langref.html
- * doc/std/index.html
+## Documentation of Zig
 
-## Installation
+The current documentation directory `doc/` for the zig version in use.
+
+## Installation of Zig
 
  * [download a pre-built binary](https://ziglang.org/download/)
  * [install from a package manager](https://github.com/ziglang/zig/wiki/Install-Zig-from-a-Package-Manager)
@@ -43,28 +40,7 @@ In other words, you can **unpack a release of Zig anywhere**, and then begin
 using it immediately. There is no need to install it globally, although this
 mechanism supports that use case too (i.e. `/usr/bin/zig` and `/usr/lib/zig/`).
 
-## Building from Source
-
-Ensure you have the required dependencies:
-
- * CMake >= 3.5
- * System C/C++ Toolchain
- * LLVM, Clang, LLD development libraries == 16.x
-
-Then it is the standard CMake build process:
-
-```
-mkdir build
-cd build
-cmake ..
-make install
-```
-
-For more options, tips, and troubleshooting, please see the
-[Building Zig From Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
-page on the wiki.
-
-## Contributing
+## Contributing to Zig
 
 Zig is Free and Open Source Software. We welcome bug reports and patches from
 everyone. However, keep in mind that Zig governance is BDFN (Benevolent
