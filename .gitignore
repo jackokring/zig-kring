@@ -1,4 +1,5 @@
 zig
 zig-cache/**
 lib/**
+kring/zig-cache/**
 
