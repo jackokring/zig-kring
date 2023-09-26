@@ -1,6 +1,30 @@
 const std = @import("std");
 const testing = std.testing;
 
+//=================================================
+// LIBRARY DIRECT ZIG/WASM
+//=================================================
+export fn add(a: i32, b: i32) i32 {
+    return a + b;
+}
+
+//=================================================
+// MAIN ENTRY POINT STAND ALONE
+//=================================================
+fn main() !void {
+
+}
+
+//=================================================
+// GLOBAL TESTS
+//=================================================
+test "basic add functionality" {
+    try testing.expect(add(3, 7) == 10);
+}
+
+//=================================================
+// PYTHON INTERFACE
+//=================================================
 const py = @cImport({
     @cDefine("Py_LIMITED_API", "3");
     @cDefine("PY_SSIZE_T_CLEAN", {});
@@ -58,12 +82,4 @@ var module = PyModuleDef{
 
 pub export fn PyInit_kring() [*]PyObject {
     return PyModule_Create(&module);
-}
-
-export fn add(a: i32, b: i32) i32 {
-    return a + b;
-}
-
-test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
 }
