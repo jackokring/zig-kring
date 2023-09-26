@@ -23,8 +23,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    
-        
+
     exe.linkLibC();
     //lib.addSystemIncludePath(.{
     //	.path = "/usr/include/python3.11",
@@ -39,7 +38,11 @@ pub fn build(b: *std.Build) void {
     //	.source_dir = lib.getEmittedDocs(),
     //	.install_dir = .prefix,
     //	.install_subdir = "doc",
-	//});
+    //});
+
+    // library module
+    const kring = b.addModule("kring", .{ .source_file = .{ .path = "kring/src/main.zig" } });
+    exe.addModule("kring", kring);
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
