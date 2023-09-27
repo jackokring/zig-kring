@@ -5,16 +5,29 @@ A general-purpose programming language and toolchain for maintaining
 
 https://ziglang.org/
 
-This is my soure development repo for testing ideas and building.
+This is my soure development repo for testing `zig` ideas and building.
 
 ## Projects in This Repository
 
- * A blank to be extended library `kring`
- * Editing of default build scripts `build.zig`
+ * A blank to be extended library `kring`. (TODO)
+  * A `zig` source for static compile.
+  * A `python` module interface.
+  * A dynamic shared library for `C` (needs a `.h` auto build) or `wasm`.
+  * A unit interface for `fp` in `pascal`. (TODO)
+ * Editing of default build scripts `build.zig`.
+ * A simple shell application in `zig`. (TODO)
+ * A simple `lazarus` and `pascal` RAD GUI. (TODO)
+ * A automatic cross compile build and package system. (TODO)
+
+### Command Stack
+
+The library contains a command processor. (TODO) All the other interfaces use this basic strategy of
+making commands. Apart from the command string, all IO is through files, and a return status. Some
+functions optimized for various coding or debug views are also available. (TODO)
 
 ## Documentation of Zig
 
-The current documentation directory `doc/` for the zig version in use.
+The current documentation directory `doc/` for the zig version in use with this project.
 
 ## Installation of Zig
 
