@@ -40,19 +40,19 @@ pub fn build(b: *std.Build) void {
     	.install_subdir = "doc",
 	});
 	
-	// and module
-    b.installDirectory(.{
-    	.source_dir = .{ .path = "src/pytemplate" },
-    	.install_dir = .prefix,
-    	.install_subdir = "lib",
-	});
 	// package name
 	b.installDirectory(.{
     	.source_dir = .{ .path = "zig-out/lib" },
     	.install_dir = .prefix,
     	.install_subdir = "kring",
 	});
-	// toml
+	// and module template
+    b.installDirectory(.{
+    	.source_dir = .{ .path = "src/pytemplate" },
+    	.install_dir = .prefix,
+    	.install_subdir = "kring",
+	});
+	// pyproject.toml/publish.sh for twine
 	b.installDirectory(.{
     	.source_dir = .{ .path = "src/pyproject" },
     	.install_dir = .prefix,
