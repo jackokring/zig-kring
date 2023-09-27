@@ -46,6 +46,18 @@ pub fn build(b: *std.Build) void {
     	.install_dir = .prefix,
     	.install_subdir = "lib",
 	});
+	// package name
+	b.installDirectory(.{
+    	.source_dir = .{ .path = "zig-out/lib" },
+    	.install_dir = .prefix,
+    	.install_subdir = "kring",
+	});
+	// toml
+	b.installDirectory(.{
+    	.source_dir = .{ .path = "src/pyproject" },
+    	.install_dir = .prefix,
+    	.install_subdir = "."
+	});
 
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kring"
+version = "0.0.1"
+authors = [
+  { name="Simon Jackson", email="jackokring@gmail.com" },
+]
+description = "Zig library"
+readme = "kring/README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[tool.hatch.build]
+include = []
+exclude = [ "lib/*" ]
+artifacts = []
+only-packages = false
+
+[project.urls]
+"Homepage" = "https://github.com/jackokring/zig-kring"
+"Bug Tracker" = "https://github.com/jackokring/zig-kring/issues"
