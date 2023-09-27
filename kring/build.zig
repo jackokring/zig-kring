@@ -39,6 +39,13 @@ pub fn build(b: *std.Build) void {
     	.install_dir = .prefix,
     	.install_subdir = "doc",
 	});
+	
+	// and module
+    b.installDirectory(.{
+    	.source_dir = .{ .path = "src/pytemplate" },
+    	.install_dir = .prefix,
+    	.install_subdir = "lib",
+	});
 
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
