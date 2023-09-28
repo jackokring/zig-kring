@@ -38,6 +38,8 @@ const PyModuleDef_Base = py.PyModuleDef_Base;
 const Py_BuildValue = py.Py_BuildValue;
 const PyModule_Create = py.PyModule_Create;
 const METH_NOARGS = py.METH_NOARGS;
+const METH_ARGS = py.METH_VARARGS;
+const PyArg_ParseTuple = py.PyArg_ParseTuple;
 
 fn load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*]PyObject {
     _ = self;
@@ -49,7 +51,7 @@ var Methods = [_]PyMethodDef{
     PyMethodDef{
         .ml_name = "load",
         .ml_meth = load,
-        .ml_flags = METH_NOARGS,
+        .ml_flags = METH_ARGS,
         .ml_doc = "Load.",
     },
     PyMethodDef{

@@ -33,6 +33,8 @@ def resolve(args):
 
 def test(args):
     """test kring"""
+    # add tests here TODO
+    print(__all__)
     return
 
 def main(parser: argparse.ArgumentParser):
