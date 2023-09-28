@@ -10,9 +10,8 @@ This is my soure development repo for testing `zig` ideas and building.
 ## Projects in This Repository
 
  * A blank to be extended library `kring`. (TODO)
-  * A `zig` source for static compile.
+  * A `zig` source for static compile (perhaps to `wasm`).
   * A `python` module interface (on PyPI). (TODO)
-  * A dynamic shared library for `C` (needs a `.h` auto build) or `wasm`.
   * A unit interface for `fp` in `pascal`. (TODO)
  * Editing of default build scripts `build.zig`.
  * A simple shell application in `zig`. (TODO)

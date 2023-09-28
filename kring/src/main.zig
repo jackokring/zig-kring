@@ -4,8 +4,9 @@ const testing = std.testing;
 //=================================================
 // LIBRARY DIRECT ZIG/WASM
 //=================================================
-pub export fn add(a: i32, b: i32) i32 {
-    return a + b;
+pub export fn load(a: [*c]const u8) i32 {
+	std.debug.print("All your {s} are libs dat belong to us.\n", .{ a });
+    return 2;
 }
 
 //=================================================
@@ -19,7 +20,7 @@ fn main() !void {
 // GLOBAL TESTS
 //=================================================
 test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
+    try testing.expect(load("") == 2);
 }
 
 //=================================================
@@ -41,17 +42,17 @@ const METH_NOARGS = py.METH_NOARGS;
 const METH_ARGS = py.METH_VARARGS;
 const PyArg_ParseTuple = py.PyArg_ParseTuple;
 
-fn load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*]PyObject {
+fn py_load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*]PyObject {
     _ = self;
     _ = args;
-    _ = add(3, 7);
+    _ = load("");
     return Py_BuildValue("i", @as(c_int, 1));
 }
 
 var Methods = [_]PyMethodDef{
     PyMethodDef{
         .ml_name = "load",
-        .ml_meth = load,
+        .ml_meth = py_load,
         .ml_flags = METH_ARGS,
         .ml_doc = "Load.",
     },
