@@ -25,15 +25,12 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.linkLibC();
-    //lib.addSystemIncludePath(.{
-    //	.path = "/usr/include/python3.11",
-    //});
-    //lib.addLibraryPath("vendor/libcurl/lib");
-    //lib.addIncludePath("vendor/libcurl/include");
-    //lib.addObjectFile("vendor/libcurl/lib/libcurl.a");//static
-    //lib.linkSystemLibrary("python3.11");//dynamic
 
     // library module
+    exe.addSystemIncludePath(.{
+    	.path = "/usr/include/python3.11",
+    });
+    exe.linkSystemLibrary("python3.11");//dynamic
     const kring = b.addModule("kring", .{ .source_file = .{ .path = "kring/src/main.zig" } });
     exe.addModule("kring", kring);
 

@@ -28,9 +28,6 @@ pub fn build(b: *std.Build) void {
     lib.addSystemIncludePath(.{
     	.path = "/usr/include/python3.11",
     });
-    //lib.addLibraryPath("vendor/libcurl/lib");
-    //lib.addIncludePath("vendor/libcurl/include");
-    //lib.addObjectFile("vendor/libcurl/lib/libcurl.a");//static
     lib.linkSystemLibrary("python3.11");//dynamic
 
 	// and docs
