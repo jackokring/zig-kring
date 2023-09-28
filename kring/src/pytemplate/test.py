@@ -25,7 +25,7 @@ HELP = 'zig-kring'
 
 import argparse
 # does library import?
-#import kring
+import kring
 
 def resolve(args):
     """argument action resolver"""

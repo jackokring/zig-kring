@@ -40,13 +40,7 @@ pub fn build(b: *std.Build) void {
     	.install_subdir = "doc",
 	});
 	
-	// lib
-	b.installDirectory(.{
-    	.source_dir = .{ .path = "zig-out/lib" },
-    	.install_dir = .prefix,
-    	.install_subdir = "kring",
-	});
-	// and module template
+	// module template
     b.installDirectory(.{
     	.source_dir = .{ .path = "src/pytemplate" },
     	.install_dir = .prefix,
