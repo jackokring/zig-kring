@@ -15,6 +15,8 @@ pub fn main() !void {
     const stdout_file = std.io.getStdOut().writer();
     var bw = std.io.bufferedWriter(stdout_file);
     const stdout = bw.writer();
+    var i = kring.add(2, 3);
+    std.debug.print("All your {d} are belong to us.\n", .{ i });
 
     try stdout.print("Run `zig build test` to run the tests.\n", .{});
 

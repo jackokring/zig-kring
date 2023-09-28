@@ -33,13 +33,6 @@ pub fn build(b: *std.Build) void {
     //lib.addObjectFile("vendor/libcurl/lib/libcurl.a");//static
     //lib.linkSystemLibrary("python3.11");//dynamic
 
-    // and docs
-    //b.installDirectory(.{
-    //	.source_dir = lib.getEmittedDocs(),
-    //	.install_dir = .prefix,
-    //	.install_subdir = "doc",
-    //});
-
     // library module
     const kring = b.addModule("kring", .{ .source_file = .{ .path = "kring/src/main.zig" } });
     exe.addModule("kring", kring);
