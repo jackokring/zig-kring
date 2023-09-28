@@ -6,7 +6,7 @@ try:
 except:
     __version__ = 'development-alpha-version'
 
-# exception hook handler for supression of traceback in normal use
+# exception hook handler for suppression of traceback in normal use
 import sys
 
 debug = False
@@ -24,8 +24,8 @@ VERSION = __version__   # main version from pyproject.toml
 HELP = 'zig-kring'
 
 import argparse
-# does library import
-from kring.lib import *
+# does library import?
+#import kring
 
 def resolve(args):
     """argument action resolver"""
@@ -34,25 +34,20 @@ def resolve(args):
 def test(args):
     """test kring"""
     # add tests here TODO
-    print(__all__)
+    print(kring.load(""))
     return
 
 def main(parser: argparse.ArgumentParser):
     parser.add_argument('-v', '--version', action = 'version', version = '%(prog)s ' + VERSION)
-    parser.add_argument('-d', '--debug', action = 'store_true', help = 'debug tracebacks')
+    parser.add_argument('-d', '--debug', action = 'store_true', help = 'debug traceback')
     adder = parser.add_subparsers(help = 'sub-command')
-
-    # blwz
-    #parser = adder.add_parser('blwz', help = blwz.HELP)
-    #parser.set_defaults(func = blwz.resolve)
-    #blwz.main(parser)
 
     # dx
     #parser = adder.add_parser('dx', help = dx.HELP)
     #parser.set_defaults(func = dx.resolve)
     #dx.main(parser)
 
-    # test - no argumenets
+    # test - no arguments
     parser = adder.add_parser('test', help = 'run tests')
     parser.set_defaults(func = test)
 

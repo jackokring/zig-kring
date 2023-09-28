@@ -44,6 +44,7 @@ const PyArg_ParseTuple = py.PyArg_ParseTuple;
 fn load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*]PyObject {
     _ = self;
     _ = args;
+    _ = add(3, 7);
     return Py_BuildValue("i", @as(c_int, 1));
 }
 

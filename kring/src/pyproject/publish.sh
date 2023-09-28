@@ -1,6 +1,6 @@
 #!/bin/bash
 # launch python tests
-python -m kring test
+python kring/test.py test
 
 # PyPI API setup notify
 

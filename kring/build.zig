@@ -44,7 +44,7 @@ pub fn build(b: *std.Build) void {
 	b.installDirectory(.{
     	.source_dir = .{ .path = "zig-out/lib" },
     	.install_dir = .prefix,
-    	.install_subdir = "kring/lib",
+    	.install_subdir = "kring",
 	});
 	// and module template
     b.installDirectory(.{
