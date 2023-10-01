@@ -4,7 +4,7 @@ const testing = std.testing;
 //=================================================
 // LIBRARY DIRECT ZIG/WASM
 //=================================================
-pub export fn load(a: [*c]const u8) i32 {
+pub export fn load(a: [*:0]const u8) i32 {
 	std.debug.print("All your {s} are libs dat belong to us.\n", .{ a });
     return 2;
 }
