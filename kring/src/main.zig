@@ -1,5 +1,7 @@
 const std = @import("std");
 const testing = std.testing;
+const builtin = @import("builtin");
+const separator = if (builtin.os.tag == .windows) '\\' else '/';
 
 //=================================================
 // LIBRARY DIRECT ZIG/WASM
@@ -28,7 +30,7 @@ test "basic add functionality" {
 //=================================================
 const py = @cImport({
     @cDefine("Py_LIMITED_API", "3");
-    @cDefine("PY_SSIZE_T_CLEAN", {});
+    //@cDefine("PY_SSIZE_T_CLEAN", {});
     @cInclude("Python.h");
 });
 
@@ -41,11 +43,14 @@ const PyModule_Create = py.PyModule_Create;
 const METH_NOARGS = py.METH_NOARGS;
 const METH_ARGS = py.METH_VARARGS;
 const PyArg_ParseTuple = py.PyArg_ParseTuple;
+const PyExc_ValueError = py.PyExc_ValueError;
 
-fn py_load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*]PyObject {
+fn py_load(self: [*c]PyObject, args: [*c]PyObject) callconv(.C) [*c]PyObject {
+	var arg: [*c]const u8 = null;
     _ = self;
-    _ = args;
     _ = load("");
+    _ = PyArg_ParseTuple(args, "s", &arg);//ok parse
+    //PyErr_SetString(PyExc_ValueError, "System command failed");
     return Py_BuildValue("i", @as(c_int, 1));
 }
 

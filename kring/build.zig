@@ -1,4 +1,6 @@
 const std = @import("std");
+const builtin = @import("builtin");
+const separator = if (builtin.os.tag == .windows) '\\' else '/';
 
 // Although this function looks imperative, note that its job is to
 // declaratively construct a build graph that will be executed by an external
@@ -25,11 +27,14 @@ pub fn build(b: *std.Build) void {
     });
     
     lib.linkLibC();
-    lib.addSystemIncludePath(.{
-    	.path = "/usr/include/python3.11",
-    });
-    lib.linkSystemLibrary("python3.11");//dynamic
-
+    // library module
+    if(builtin.os.tag == .linux) {
+		lib.addSystemIncludePath(.{
+			.path = "/usr/include/python3.11",
+		});
+		lib.linkSystemLibrary("python3.11");//dynamic
+    }
+    
 	// and docs
     b.installDirectory(.{
     	.source_dir = lib.getEmittedDocs(),
