@@ -24,6 +24,8 @@ exclude = []
 artifacts = []
 only-packages = false
 
+[tool.hatch.build.targets.wheel.hooks.custom]
+
 [project.urls]
 "Homepage" = "https://github.com/jackokring/zig-kring"
 "Bug Tracker" = "https://github.com/jackokring/zig-kring/issues"
