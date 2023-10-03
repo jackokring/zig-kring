@@ -4,9 +4,9 @@ const builtin = @import("builtin");
 const separator = if (builtin.os.tag == .windows) '\\' else '/';
 
 //=================================================
-// LIBRARY DIRECT ZIG/WASM
+// LIBRARY DIRECT ZIG/WASM/C
 //=================================================
-pub export fn load(a: [*:0]const u8) i32 {
+pub export fn load(a: [*c]const u8) i32 {
 	std.debug.print("All your {s} are libs dat belong to us.\n", .{ a });
     return 2;
 }

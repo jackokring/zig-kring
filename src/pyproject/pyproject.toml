@@ -20,7 +20,7 @@ dependencies = []
 
 [tool.hatch.build]
 include = []
-exclude = [ "lib/*" ]
+exclude = []
 artifacts = []
 only-packages = false
 

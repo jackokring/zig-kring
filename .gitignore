@@ -2,6 +2,5 @@ zig
 zig-cache/**
 zig-out/**
 lib/**
-kring/zig-cache/**
-kring/zig-out/**
+kring/**
 

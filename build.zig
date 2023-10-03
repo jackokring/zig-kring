@@ -1,4 +1,6 @@
 const std = @import("std");
+const builtin = @import("builtin");
+const separator = if (builtin.os.tag == .windows) '\\' else '/';
 
 // Although this function looks imperative, note that its job is to
 // declaratively construct a build graph that will be executed by an external
@@ -25,19 +27,62 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.linkLibC();
+    //if(builtin.os.tag == .linux) {
+	exe.addSystemIncludePath(.{
+		.path = "/usr/include/python3.11",
+	});
+	exe.linkSystemLibrary("python3.11");//dynamic
 
     // library module
-    exe.addSystemIncludePath(.{
-    	.path = "/usr/include/python3.11",
-    });
-    exe.linkSystemLibrary("python3.11");//dynamic
-    const kring = b.addModule("kring", .{ .source_file = .{ .path = "kring/src/main.zig" } });
+    const kring = b.addModule("kring", .{ .source_file = .{ .path = "src/kring.zig" } });
     exe.addModule("kring", kring);
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).
     b.installArtifact(exe);
+    
+    const lib = b.addSharedLibrary(.{
+        .name = "kring",
+        // In this case the main source file is merely a path, however, in more
+        // complicated build scripts, this could be a generated file.
+        .root_source_file = .{ .path = "src/kring.zig" },
+        .target = target,
+        .optimize = optimize,
+    });
+    
+    lib.linkLibC();
+    // library module
+    //if(builtin.os.tag == .linux) {
+	lib.addSystemIncludePath(.{
+		.path = "/usr/include/python3.11",
+	});
+	lib.linkSystemLibrary("python3.11");//dynamic
+    
+	// and docs
+    b.installDirectory(.{
+    	.source_dir = lib.getEmittedDocs(),
+    	.install_dir = .prefix,
+    	.install_subdir = "kring/doc",
+	});
+	
+	// module template
+    b.installDirectory(.{
+    	.source_dir = .{ .path = "src/pytemplate" },
+    	.install_dir = .prefix,
+    	.install_subdir = "kring",
+	});
+	// pyproject.toml/publish.sh for twine
+	b.installDirectory(.{
+    	.source_dir = .{ .path = "src/pyproject" },
+    	.install_dir = .prefix,
+    	.install_subdir = "."
+	});
+
+    // This declares intent for the library to be installed into the standard
+    // location when the user invokes the "install" step (the default step when
+    // running `zig build`).
+    b.installArtifact(lib);
 
     // This *creates* a Run step in the build graph, to be executed when another
     // step is evaluated that depends on it. The next line below will establish
